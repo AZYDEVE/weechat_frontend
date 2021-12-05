@@ -1,0 +1,6 @@
+.chatPage_container {
+  display: flex;
+  flex-direction: row;
+  width: 180vh;
+  height: 100vh;
+}

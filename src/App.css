@@ -1,0 +1,7 @@
+html,
+body,
+.app,
+#root {
+  width: 200vh;
+  height: 100vh;
+}
