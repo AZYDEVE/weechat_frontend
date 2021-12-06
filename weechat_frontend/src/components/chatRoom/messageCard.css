@@ -1,0 +1,32 @@
+.messsageCard-container {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  margin-left: 5vh;
+  margin-right: 5vh;
+  margin-top: 3vh;
+}
+
+.user-message-container {
+  display: flex;
+  flex-direction: row;
+  max-width: 80vh;
+  justify-content: left;
+}
+.user {
+}
+
+.messages {
+  background-color: antiquewhite;
+  margin-left: 3vh;
+  padding: 1vh;
+  border: 1px black;
+  border-radius: 5px;
+  font-size: 3vh;
+}
+
+.time {
+  font-size: small;
+  margin-top: 5px;
+}
