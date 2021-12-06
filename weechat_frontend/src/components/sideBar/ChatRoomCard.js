@@ -1,9 +1,27 @@
 import React from "react";
 
-const ChatRoomCard = (props) => {
+const ChatRoomCard = ({
+  selectChatRoom,
+  stylings,
+  chatRoom,
+  activeChatRoom,
+}) => {
+  const handleChatRoomClick = () => {
+    selectChatRoom(chatRoom.Id);
+  };
+
+  const handleBackGroundColor = () => {
+    if (chatRoom.Id === activeChatRoom) {
+      stylings["backgroundColor"] = "#ECECEC";
+      return stylings;
+    } else {
+      return stylings;
+    }
+  };
+
   return (
     <>
-      <div style={props.stylings}>
+      <div style={handleBackGroundColor()} onClick={handleChatRoomClick}>
         <div
           style={{
             display: "flex",
@@ -12,8 +30,9 @@ const ChatRoomCard = (props) => {
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
+            cursor: "pointer",
           }}>
-          {props.cardName}
+          {chatRoom.name}
         </div>
       </div>
     </>
