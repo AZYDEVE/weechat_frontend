@@ -3,11 +3,21 @@ import { FiSend } from "react-icons/fi/";
 
 import "./chatRoom.css";
 
+const ws = new WebSocket("ws://localhost:3001");
+ws.onopen = function (event) {
+  console.log("socket is connected");
+  ws.send("test");
+};
+
 const ChatRoom = () => {
   const [listOfMessages, setListOfMessages] = useState(null);
   const [inputMessage, setInputMessage] = useState("");
+  const [chatRoomId, setChatRoomID] = useState("");
 
-  console.log(inputMessage);
+  ws.onmessage = function (event) {
+    console.log(event.data);
+  };
+
   const clickSend = () => {
     console.log("hello alex");
   };
@@ -31,6 +41,7 @@ const ChatRoom = () => {
             value={inputMessage}
             onChange={handleInputChanges}
           />
+
           <FiSend
             className="btn-send pointing"
             onClick={clickSend}

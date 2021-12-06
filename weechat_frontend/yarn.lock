@@ -1534,6 +1534,11 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@stomp/stompjs@^6.1.0":
+  "integrity" "sha512-FHDTrIFM5Ospi4L3Xhj6v2+NzCVAeNDcBe95YjUWhWiRMrBF6uN3I7AUOlRgT6jU/2WQvvYK8ZaIxFfxFp+uHQ=="
+  "resolved" "https://registry.npmjs.org/@stomp/stompjs/-/stompjs-6.1.2.tgz"
+  "version" "6.1.2"
+
 "@surma/rollup-plugin-off-main-thread@^1.1.1":
   "integrity" "sha512-yBMPqmd1yEJo/280PAMkychuaALyQ9Lkb5q1ck3mjJrFuEobIfhnQ4J3mbvBoISmR3SWMWV+cGB/I0lCQee79A=="
   "resolved" "https://registry.npmjs.org/@surma/rollup-plugin-off-main-thread/-/rollup-plugin-off-main-thread-1.4.2.tgz"
@@ -9511,7 +9516,15 @@
   optionalDependencies:
     "fsevents" "^2.1.3"
 
-"react@*", "react@^17.0.2", "react@>= 16", "react@>=16.8", "react@17.0.2":
+"react-stomp-hooks@^2.0.2":
+  "integrity" "sha512-D620vfAK3CJ5eIgPFV58FTHyG/i6NhDo9CEk5QGWZ8vUUlc7bMS3MO/VnxB4hTR0yrBx02fE3l9Ah63JlQjYsQ=="
+  "resolved" "https://registry.npmjs.org/react-stomp-hooks/-/react-stomp-hooks-2.0.2.tgz"
+  "version" "2.0.2"
+  dependencies:
+    "@stomp/stompjs" "^6.1.0"
+    "sockjs-client" "^1.5.1"
+
+"react@*", "react@^17.0.2", "react@>= 16", "react@>=16.8", "react@>16.8.0", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"
@@ -10363,17 +10376,17 @@
     "source-map-resolve" "^0.5.0"
     "use" "^3.1.0"
 
-"sockjs-client@^1.4.0", "sockjs-client@^1.5.0":
-  "integrity" "sha512-8Dt3BDi4FYNrCFGTL/HtwVzkARrENdwOUf1ZoW/9p3M8lZdFT35jVdrHza+qgxuG9H3/shR4cuX/X9umUrjP8Q=="
-  "resolved" "https://registry.npmjs.org/sockjs-client/-/sockjs-client-1.5.0.tgz"
-  "version" "1.5.0"
+"sockjs-client@^1.4.0", "sockjs-client@^1.5.0", "sockjs-client@^1.5.1":
+  "integrity" "sha512-ZzRxPBISQE7RpzlH4tKJMQbHM9pabHluk0WBaxAQ+wm/UieeBVBou0p4wVnSQGN9QmpAZygQ0cDIypWuqOFmFQ=="
+  "resolved" "https://registry.npmjs.org/sockjs-client/-/sockjs-client-1.5.2.tgz"
+  "version" "1.5.2"
   dependencies:
     "debug" "^3.2.6"
     "eventsource" "^1.0.7"
     "faye-websocket" "^0.11.3"
     "inherits" "^2.0.4"
     "json3" "^3.3.3"
-    "url-parse" "^1.4.7"
+    "url-parse" "^1.5.3"
 
 "sockjs@^0.3.21":
   "integrity" "sha512-DhbPFGpxjc6Z3I+uX07Id5ZO2XwYsWOrYjaSeieES78cq+JaJvVe5q/m1uvjIQhXinhIeCFRH6JgXe+mvVMyXw=="
@@ -11369,7 +11382,7 @@
     "mime-types" "^2.1.27"
     "schema-utils" "^3.0.0"
 
-"url-parse@^1.4.3", "url-parse@^1.4.7":
+"url-parse@^1.4.3", "url-parse@^1.5.3":
   "integrity" "sha512-IIORyIQD9rvj0A4CLWsHkBBJuNqWpFQe224b6j9t/ABmquIS0qDU2pY6kl6AuOrL5OkCXHMCFNe1jBcuAggjvQ=="
   "resolved" "https://registry.npmjs.org/url-parse/-/url-parse-1.5.3.tgz"
   "version" "1.5.3"
