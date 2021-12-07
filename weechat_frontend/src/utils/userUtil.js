@@ -5,28 +5,28 @@ import { useAuth0 } from "@auth0/auth0-react";
 function useAuthInfo() {
   const { user, isAuthenticated } = useAuth0();
 
-  const [userInfo, setUserInfo] = useState({
+  const [currentUserInfo, setCurrentUserInfo] = useState({
     email: "",
     user_id: "",
-    user_name: "",
+    nickname: "",
   });
 
   useEffect(() => {
-    const getUserData = () => {
-      const user_info = {
+    const getOneUser = () => {
+      const one_user = {
         email: user.email,
         user_id: user.sub,
-        user_name: user.nickname,
+        nickname: user.nickname,
       };
-      setUserInfo(user_info);
+      setCurrentUserInfo(one_user);
     };
 
     if (isAuthenticated) {
-      getUserData();
+      getOneUser();
     }
   }, [user, isAuthenticated]);
 
-  return userInfo;
+  return currentUserInfo;
 }
 
 export default useAuthInfo;
