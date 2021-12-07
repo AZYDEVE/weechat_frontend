@@ -13,30 +13,50 @@ var usersRouter = require("./routes/users");
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server: server });
+const client = stompit.connect({ host: "localhost", port: 61613 });
+
+let subscription_message = null;
 
 // websocket connecting to the client
 wss.on("connection", function connection(ws) {
-  console.log("a new client is connected");
+  console.log("react web-socket is connected");
 
   // when receive new topic from the client, change the subscribe topic
   ws.on("message", function incoming(message) {
-    messageMqReceive(message, ws);
+    const messageObj = JSON.parse(message);
+
+    if (messageObj.type === "newchat") {
+      subscribeToGetNewChatRoom(Buffer.from(messageObj.body), ws);
+    } else {
+      if (subscription_message !== null) {
+        subscription_message.unsubscribe();
+      }
+      subscribeToChatTopic(Buffer.from(messageObj.body), ws);
+    }
   });
 });
 
 // a function for connecting ActiveMQ. When receive a new message, forward it to the client
-const messageMqReceive = (topic, ws) => {
-  console.log(stompit.Client[0]);
-
-  stompit.connect({ host: "localhost", port: 61613 }, (err, client) => {
-    client.subscribe({ destination: `/topic/${topic}` }, (err, msg) => {
+const subscribeToChatTopic = (topic, ws) => {
+  subscription_message = client.subscribe(
+    { destination: `/topic/${topic}` },
+    (err, msg) => {
       msg.readString("UTF-8", (err, body) => {
         ws.send(body);
-
-        client.disconnect();
       });
-    });
-  });
+    }
+  );
+};
+
+const subscribeToGetNewChatRoom = (topic, ws) => {
+  subscription_message = client.subscribe(
+    { destination: `/topic/${topic}` },
+    (err, msg) => {
+      msg.readString("UTF-8", (err, body) => {
+        ws.send(body);
+      });
+    }
+  );
 };
 
 // view engine setup

@@ -31,7 +31,8 @@ const ChatPage = () => {
   const selectChatRoom = (chatRoomID) => {
     console.log(chatRoomID);
     setChatRoomID(chatRoomID);
-    ws.send(chatRoomID);
+    // ws.send(chatRoomID);
+    ws.send(JSON.stringify({ type: "newtopic", body: chatRoomID }));
   };
 
   return (
