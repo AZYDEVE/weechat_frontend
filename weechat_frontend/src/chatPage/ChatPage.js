@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import SideBar from "../components/sideBar/ChatRoomSideBar";
 import ChatRoom from "../components/chatRoom/ChatRoom";
+import useAuthInfo from "../utils/userUtil";
+import OpenSocket from "../utils/webSocket";
 import "./chatPage.css";
 
 const ChatPage = () => {
-  const [userID, setUserID] = useState("");
+  const ws = OpenSocket();
   const [listOfChatRoom, setListOfChatRoom] = useState([]);
   const [chatRoomID, setChatRoomID] = useState("");
 
@@ -14,9 +16,13 @@ const ChatPage = () => {
     { name: "chatroom C", Id: "C1" },
   ]; // delete: temp for testing
 
+  const userInfo = useAuthInfo();
+
   useEffect(() => {
-    setListOfChatRoom(listOfChatRoomObj);
-  }, []);
+    if (userInfo.user_id !== "") {
+      setListOfChatRoom(listOfChatRoomObj);
+    }
+  }, [userInfo]);
 
   const getListOfChatRooms = () => {
     //this function is to fetch from server a list of chatRoom associated with the userID
@@ -25,6 +31,7 @@ const ChatPage = () => {
   const selectChatRoom = (chatRoomID) => {
     console.log(chatRoomID);
     setChatRoomID(chatRoomID);
+    ws.send(chatRoomID);
   };
 
   return (
@@ -36,7 +43,7 @@ const ChatPage = () => {
           selectChatRoom={selectChatRoom}
           activeChatRoom={chatRoomID}
         />
-        <ChatRoom className="chatroom" />
+        <ChatRoom className="chatroom" activeChatRoom={chatRoomID} ws={ws} />
       </div>
     </>
   );

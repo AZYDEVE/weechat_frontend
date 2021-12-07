@@ -7,14 +7,23 @@ const MessageCard = ({ user, message, time, isCurrentUser }) => {
       <div
         className={
           isCurrentUser
-            ? "User-msgCard-container"
+            ? "user-msgCard-container"
             : "not-User-msgCard-container"
         }>
-        <div className="user-message-container">
+        <div
+          className={
+            isCurrentUser
+              ? "user-message-container"
+              : "not-user-message-container"
+          }>
           <div className="user">{user}</div>
-          <div className="messages">{message}</div>
+          <div
+            className={isCurrentUser ? "user-messages" : "not-user-messages"}>
+            {message}
+
+            <div className="time">{time}</div>
+          </div>
         </div>
-        <div className="time">{time}</div>
       </div>
     </>
   );

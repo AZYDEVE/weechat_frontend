@@ -26,11 +26,14 @@ wss.on("connection", function connection(ws) {
 
 // a function for connecting ActiveMQ. When receive a new message, forward it to the client
 const messageMqReceive = (topic, ws) => {
+  console.log(stompit.Client[0]);
+
   stompit.connect({ host: "localhost", port: 61613 }, (err, client) => {
     client.subscribe({ destination: `/topic/${topic}` }, (err, msg) => {
       msg.readString("UTF-8", (err, body) => {
         ws.send(body);
-        // client.disconnect();
+
+        client.disconnect();
       });
     });
   });

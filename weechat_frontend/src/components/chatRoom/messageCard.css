@@ -1,13 +1,12 @@
-.User-msgCard-container,
+.user-msgCard-container,
 .not-User-msgCard-container {
   display: flex;
   flex-direction: column;
   width: auto;
   height: auto;
-  margin-left: 5vh;
-  margin-right: 5vh;
+  margin-left: 1vh;
+  margin-right: 1vh;
   margin-top: 3vh;
-  justify-content: center;
 }
 
 .not-User-msgCard-container {
@@ -18,12 +17,31 @@
   display: flex;
   flex-direction: row;
   max-width: 80vh;
-  justify-content: left;
-}
-.user {
 }
 
-.messages {
+.not-user-message-container {
+  display: flex;
+  flex-direction: row-reverse;
+  max-width: 80vh;
+}
+.user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 2vh;
+  font-size: larger;
+}
+
+.user-messages {
+  background-color: green;
+
+  padding: 1vh;
+  border: 1px black;
+  border-radius: 5px;
+  font-size: 3vh;
+}
+
+.not-user-messages {
   background-color: antiquewhite;
   margin-left: 3vh;
   padding: 1vh;
@@ -33,6 +51,9 @@
 }
 
 .time {
+  display: flex;
+  flex-direction: row;
   font-size: small;
   margin-top: 5px;
+  justify-content: center;
 }

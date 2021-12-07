@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { FiSend } from "react-icons/fi/";
 import MessageCard from "./MessageCard";
-
+import getUserInfo from "../../utils/userUtil";
 import "./chatRoom.css";
+import OpenSocket from "../../utils/webSocket";
 
-const ws = new WebSocket("ws://localhost:3001");
+// const ws = new WebSocket("ws://localhost:3001");
 
-ws.onopen = function (event) {
-  console.log("socket is connected");
-  ws.send("test");
-};
+// ws.onopen = function (event) {
+//   console.log("socket is connected");
+//   ws.send("test");
+// };
 
-const ChatRoom = () => {
-  let user = "Frank";
+const ChatRoom = ({ activeChatRoom, ws }) => {
+  const userInfo = getUserInfo();
   const [listOfMessages, setListOfMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
-  const [chatRoomId, setChatRoomID] = useState("");
 
   ws.onmessage = function (event) {
     const message = JSON.parse(event.data);
@@ -40,13 +40,10 @@ const ChatRoom = () => {
       return listOfMessages.map((message) => {
         console.log(message);
         let isCurrentUser = false;
-        if (message.UserID === user) {
+        if (message.UserID === userInfo.email) {
           isCurrentUser = true;
         }
 
-        console.log(isCurrentUser);
-        console.log(message.UserID);
-        console.log(user);
         return (
           <MessageCard
             user={message.UserID}
