@@ -1,4 +1,5 @@
-.messsageCard-container {
+.User-msgCard-container,
+.not-User-msgCard-container {
   display: flex;
   flex-direction: column;
   width: auto;
@@ -6,6 +7,11 @@
   margin-left: 5vh;
   margin-right: 5vh;
   margin-top: 3vh;
+  justify-content: center;
+}
+
+.not-User-msgCard-container {
+  align-items: end;
 }
 
 .user-message-container {

@@ -11,7 +11,8 @@ ws.onopen = function (event) {
   ws.send("test");
 };
 
-const ChatRoom = ({ user }) => {
+const ChatRoom = () => {
+  let user = "Frank";
   const [listOfMessages, setListOfMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
   const [chatRoomId, setChatRoomID] = useState("");
@@ -19,7 +20,7 @@ const ChatRoom = ({ user }) => {
   ws.onmessage = function (event) {
     const message = JSON.parse(event.data);
 
-    setListOfMessages([message]);
+    setListOfMessages([...listOfMessages, message]);
   };
 
   const clickSend = () => {
@@ -38,16 +39,20 @@ const ChatRoom = ({ user }) => {
     if (listOfMessages.length !== 0) {
       return listOfMessages.map((message) => {
         console.log(message);
-        let backgroundColor = "green";
-        if (message.userID === user) {
-          backgroundColor = "white";
+        let isCurrentUser = false;
+        if (message.UserID === user) {
+          isCurrentUser = true;
         }
+
+        console.log(isCurrentUser);
+        console.log(message.UserID);
+        console.log(user);
         return (
           <MessageCard
             user={message.UserID}
             message={message.message}
             time={message.timestamp}
-            backgroundColor={backgroundColor}
+            isCurrentUser={isCurrentUser}
           />
         );
       });
