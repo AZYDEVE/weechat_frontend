@@ -23,15 +23,27 @@ const NavBar = () => {
     }
   };
 
-  // the six lines below is an example of how to use userUtil to get current user_id
   var userInfo = useAuthInfo();
-  // var userlist = getAllUsers();
+
   const GetInfoButton = () => {
     return (
       <button
         onClick={() => {
+          // an example of how to use userUtil to get current user_id
           console.log(userInfo.user_id);
-          getAllUsers();
+
+          // an example of how to use getAllUsers to get a userList
+          // note that getAllUsers() is an async function
+          // you must use ".then" or other methods to cope with it
+          // otherwise the promise is pending, you will get undefined
+          getAllUsers().then((userList) => {
+            for (let i = 0; i < Object.keys(userList).length; i++) {
+              var userObj = userList[i];
+              console.log(
+                userObj.user_id + " " + userObj.nickname + " " + userObj.email
+              );
+            }
+          });
         }}
       >
         Get All Users
