@@ -4,6 +4,7 @@ import { Navbar, Container } from "react-bootstrap";
 import "./navbar.css";
 import useAuthInfo from "../../utils/userUtil";
 import getAllUsers from "../../utils/auth0API";
+import {listGroups, addGroup} from "../../services/relationship_api"
 
 const NavBar = () => {
   const { user, isAuthenticated, isLoading, loginWithRedirect, logout } =
@@ -31,6 +32,7 @@ const NavBar = () => {
         onClick={() => {
           // an example of how to use userUtil to get current user_id
           console.log(userInfo.user_id);
+
 
           // an example of how to use getAllUsers to get a userList
           // note that getAllUsers() is an async function
