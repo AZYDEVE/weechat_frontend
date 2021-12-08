@@ -31,6 +31,7 @@ wss.on("connection", function connection(ws) {
       if (subscription_message !== null) {
         subscription_message.unsubscribe();
       }
+      console.log(messageObj.body);
       subscribeToChatTopic(Buffer.from(messageObj.body), ws);
     }
   });

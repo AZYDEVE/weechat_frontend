@@ -5,7 +5,7 @@ import axios from "axios";
 const domain = process.env.REACT_APP_AUTH0_DOMAIN || "";
 const api_token = process.env.REACT_APP_AUTH0_MGMT_API_ACCESS_TOKEN || "";
 
-function getAllUsers() {
+const getAllUsers = async () => {
   const options = {
     method: "GET",
     url: `https://${domain}/api/v2/users`,
@@ -16,9 +16,9 @@ function getAllUsers() {
   };
 
   return axios.request(options).then(function (response) {
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   });
-}
+};
 
 export default getAllUsers;

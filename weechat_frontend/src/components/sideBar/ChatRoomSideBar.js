@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import Chatcard from "./ChatRoomCard";
 import { MdAddBox } from "react-icons/md/";
 import "./chatRoomSideBar.css";
+import CreateChat from "../createChatRoom/CreateChatRoom";
 
 const ChatRoomSideBar = ({
   listOfChatRoom,
   selectChatRoom,
   activeChatRoom,
+  createNewChatRoomFunction,
 }) => {
-  const getListiOfChatRooms = (listOfchatRoom) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const getListOfChatRooms = (listOfchatRoom) => {
     return listOfchatRoom.map((chatRoom) => (
       <Chatcard
         stylings={{
@@ -30,9 +34,13 @@ const ChatRoomSideBar = ({
   return (
     <>
       <div className="ChatRoomSideBar">
-        <MdAddBox size={60} />
-
-        {getListiOfChatRooms(listOfChatRoom)}
+        <MdAddBox size={60} onClick={() => setIsOpen(true)} />
+        <CreateChat
+          open={isOpen}
+          onClose={() => setIsOpen(false)}
+          createNewChatRoomFunction={createNewChatRoomFunction}
+        />
+        {getListOfChatRooms(listOfChatRoom)}
       </div>
     </>
   );

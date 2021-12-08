@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { FiSend } from "react-icons/fi/";
 import MessageCard from "./MessageCard";
 import getUserInfo from "../../utils/userUtil";
+import { sendNewMesage } from "../../services/relationship_api";
 import "./chatRoom.css";
-import OpenSocket from "../../utils/webSocket";
 
 // const ws = new WebSocket("ws://localhost:3001");
 
@@ -12,19 +12,19 @@ import OpenSocket from "../../utils/webSocket";
 //   ws.send("test");
 // };
 
-const ChatRoom = ({ activeChatRoom, ws }) => {
+const ChatRoom = ({ activeChatRoom, listOfMessages }) => {
   const userInfo = getUserInfo();
-  const [listOfMessages, setListOfMessages] = useState([]);
+
   const [inputMessage, setInputMessage] = useState("");
 
-  ws.onmessage = function (event) {
-    const message = JSON.parse(event.data);
-
-    setListOfMessages([...listOfMessages, message]);
-  };
-
+  // send new message the server
   const clickSend = () => {
-    console.log("hello alex");
+    if (inputMessage === "") {
+      console.log("message is empty");
+      return;
+    }
+    const messageInfo = { groudId: activeChatRoom, message: inputMessage };
+    sendNewMesage(messageInfo);
   };
 
   const handleInputChanges = (event) => {
@@ -36,9 +36,9 @@ const ChatRoom = ({ activeChatRoom, ws }) => {
   };
 
   const displayListOfMessages = () => {
+    console.log(listOfMessages);
     if (listOfMessages.length !== 0) {
       return listOfMessages.map((message) => {
-        console.log(message);
         let isCurrentUser = false;
         if (message.UserID === userInfo.email) {
           isCurrentUser = true;
