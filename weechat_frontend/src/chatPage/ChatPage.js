@@ -59,8 +59,12 @@ const ChatPage = () => {
     ws.send(JSON.stringify({ type: "newtopic", body: chatRoomID }));
     setListOfMessages([]);
     //get chat history
-    const chatHistory = await getChatRoomHistory(chatRoomID);
-    setListOfMessages(chatHistory);
+    try {
+      const chatHistory = await getChatRoomHistory(chatRoomID);
+      setListOfMessages(chatHistory);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const appenNewChatRoom = (newChatRoom) => {
