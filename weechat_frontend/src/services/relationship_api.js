@@ -11,37 +11,22 @@ export async function addGroup(groupName, userList) {
       userList: userList,
     })
     .then((res) => {
-        console.log("friendlist", userList);
       return res;
     })
     .catch((err) => {
-        console.log("friendlist", userList);
       console.error(err);
     });
 }
 
 export async function listGroups(userId) {
-    console.log(1);
-  return axios
-    .post(`${url}/dbms/relationship/list`, { userId: userId })
-    .then((res) => {
-      return res;
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  return await axios.post(`${url}/dbms/relationship/list`, { userId: userId });
 }
 
 // need to change the url
 export async function getChatRoomHistory(chatRoomId) {
-  return axios
-    .post(`${url}/dbms/relationship/list`, { chatRoomId: chatRoomId })
-    .then((res) => {
-      return res;
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  return axios.post(`${url}/dbms/relationship/list`, {
+    chatRoomId: chatRoomId,
+  });
 }
 
 export async function sendNewMesage(messageInfo) {

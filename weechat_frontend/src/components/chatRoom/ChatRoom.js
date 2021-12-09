@@ -36,7 +36,8 @@ const ChatRoom = ({ activeChatRoom, listOfMessages }) => {
   };
 
   const displayListOfMessages = () => {
-    console.log(listOfMessages);
+    console.log(listOfMessages.length);
+
     if (listOfMessages.length !== 0) {
       return listOfMessages.map((message) => {
         let isCurrentUser = false;
