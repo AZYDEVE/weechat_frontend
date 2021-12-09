@@ -25,14 +25,15 @@ export async function listGroups(userId) {
 // need to change the url
 
 export async function getChatRoomHistory(chatRoomId) {
-  return axios.post(`${url}/dbms/relationship/list`, {
-    chatRoomId: chatRoomId,
+  console.log(chatRoomId);
+  return axios.post(`${url}/dbms/message/list`, {
+    chatRoomId: chatRoomId
   });
 }
 
 export async function sendNewMesage(messageInfo) {
   return axios
-    .post(`${url}/dbms/relationship/list`, messageInfo)
+    .post(`${url}/dbms/message/add`, messageInfo)
     .then((res) => {
       return res;
     })

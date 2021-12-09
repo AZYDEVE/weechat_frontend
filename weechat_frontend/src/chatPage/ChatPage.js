@@ -61,7 +61,8 @@ const ChatPage = () => {
     //get chat history
     try {
       const chatHistory = await getChatRoomHistory(chatRoomID);
-      setListOfMessages(chatHistory);
+      console.log(chatHistory);
+      setListOfMessages(chatHistory["data"]["datas"]);
     } catch (error) {
       console.log(error);
     }

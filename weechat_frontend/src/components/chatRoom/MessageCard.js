@@ -1,7 +1,12 @@
 import React from "react";
 import "./messageCard.css";
+import Moment from "moment";
 
 const MessageCard = ({ user, message, time, isCurrentUser }) => {
+  const convertMiliSecondToTime = () => {
+    return Moment(time).format("MM-DD hh:mm:ss a");
+  };
+
   return (
     <>
       <div
@@ -21,7 +26,7 @@ const MessageCard = ({ user, message, time, isCurrentUser }) => {
             className={isCurrentUser ? "user-messages" : "not-user-messages"}>
             {message}
 
-            <div className="time">{time}</div>
+            <div className="time">{convertMiliSecondToTime()}</div>
           </div>
         </div>
       </div>

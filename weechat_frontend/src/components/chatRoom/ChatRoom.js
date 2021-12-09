@@ -25,12 +25,15 @@ const ChatRoom = ({ activeChatRoom, listOfMessages }) => {
     }
 
     console.log(userInfo);
+
+    console.log(activeChatRoom);
     const messageInfo = {
-      groudId: activeChatRoom,
+      groupId: activeChatRoom,
       senderId: userInfo.email,
       message: inputMessage,
     };
     sendNewMesage(messageInfo);
+    setInputMessage("");
   };
 
   const handleInputChanges = (event) => {
@@ -61,7 +64,7 @@ const ChatRoom = ({ activeChatRoom, listOfMessages }) => {
         );
       });
     } else {
-      return <div>Loading</div>;
+      return <div>Loading..</div>;
     }
   };
 
