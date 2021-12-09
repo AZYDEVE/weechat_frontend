@@ -23,7 +23,13 @@ const ChatRoom = ({ activeChatRoom, listOfMessages }) => {
       console.log("message is empty");
       return;
     }
-    const messageInfo = { groudId: activeChatRoom, message: inputMessage };
+
+    console.log(userInfo);
+    const messageInfo = {
+      groudId: activeChatRoom,
+      senderId: userInfo.email,
+      message: inputMessage,
+    };
     sendNewMesage(messageInfo);
   };
 
