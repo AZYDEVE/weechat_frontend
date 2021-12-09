@@ -44,8 +44,8 @@ const ChatPage = () => {
   useEffect(() => {
     console.log(userInfo);
     if (userInfo.email !== "") {
-     //  setListOfChatRoom(listOfChatRoomObj);
-     try {
+      //  setListOfChatRoom(listOfChatRoomObj);
+      try {
         getListOfChatRooms(listOfChatRoomObj);
       } catch (error) {
         console.log(error);
