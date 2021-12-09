@@ -28,7 +28,7 @@ const ChatPage = () => {
     console.log(userInfo.email);
     try {
       const listOfChatRoom = await listGroups(userInfo.email);
-      setListOfChatRoom(listOfChatRoom);
+      setListOfChatRoom(listOfChatRoom.data.datas);
     } catch (error) {
       console.log(error);
     }
@@ -44,9 +44,9 @@ const ChatPage = () => {
   useEffect(() => {
     console.log(userInfo);
     if (userInfo.email !== "") {
-      // setListOfChatRoom(listOfChatRoomObj);
-      try {
-        getListOfChatRooms();
+     //  setListOfChatRoom(listOfChatRoomObj);
+     try {
+        getListOfChatRooms(listOfChatRoomObj);
       } catch (error) {
         console.log(error);
       }
