@@ -60,6 +60,8 @@ const ChatRoom = ({ activeChatRoom, listOfMessages }) => {
           />
         );
       });
+    } else {
+      return <div>Loading</div>;
     }
   };
 
