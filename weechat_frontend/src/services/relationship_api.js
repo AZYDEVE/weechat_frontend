@@ -4,21 +4,24 @@ import { url } from "../Constant/url.js";
 // https://auth0.com/docs/users/user-search/retrieve-users-with-get-users-endpoint
 // this hardcoded api_token will be expired on Dec 17 2021 at noon
 
-export async function addGroup({ groupName, userList }) {
+export async function addGroup(groupName, userList) {
   return axios
     .post(`${url}/dbms/relationship/add`, {
       groupName: groupName,
       userList: userList,
     })
     .then((res) => {
+        console.log("friendlist", userList);
       return res;
     })
     .catch((err) => {
+        console.log("friendlist", userList);
       console.error(err);
     });
 }
 
-export async function listGroups({ userId }) {
+export async function listGroups(userId) {
+    console.log(1);
   return axios
     .post(`${url}/dbms/relationship/list`, { userId: userId })
     .then((res) => {

@@ -13,6 +13,8 @@ const ChatRoomSideBar = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const getListOfChatRooms = (listOfchatRoom) => {
+      console.log(listOfchatRoom);
+      if(listOfchatRoom!==null){
     return listOfchatRoom.map((chatRoom) => (
       <Chatcard
         stylings={{
@@ -28,7 +30,9 @@ const ChatRoomSideBar = ({
         selectChatRoom={selectChatRoom}
         activeChatRoom={activeChatRoom}
       />
-    ));
+    ));}else{
+          return (<div>loading...</div>)
+      }
   };
 
   return (

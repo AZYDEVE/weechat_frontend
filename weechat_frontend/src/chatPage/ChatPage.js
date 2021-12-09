@@ -11,6 +11,7 @@ const ChatPage = () => {
   const [listOfChatRoom, setListOfChatRoom] = useState([]);
   const [chatRoomID, setChatRoomID] = useState("");
   const [listOfMessages, setListOfMessages] = useState([]);
+  const [currentUser, setCurrentUser] = useState(useAuthInfo())
 
   ws.onmessage = function (event) {
     const message = JSON.parse(event.data);
@@ -24,17 +25,20 @@ const ChatPage = () => {
     { name: "chatroom C", Id: "C1" },
   ]; // delete: temp for testing
 
-  const userInfo = useAuthInfo();
+  //const userInfo = useAuthInfo();
 
   useEffect(() => {
-    if (userInfo.user_id !== "") {
-      setListOfChatRoom(listOfChatRoomObj);
+    console.log(currentUser);
+    /*console.log("userId", userInfo.user_id);*/
+    if (currentUser.user_id !== null) {
+      getListOfChatRooms();
     }
   }, []);
 
   const getListOfChatRooms = async () => {
     //this function is to fetch from server a list of chatRoom associated with the userID
-    const listOfChatRoom = await listGroups({ userId: userInfo.email });
+    console.log(3);
+    const listOfChatRoom = await listGroups(currentUser.email);
     setListOfChatRoom(listOfChatRoom);
   };
 
