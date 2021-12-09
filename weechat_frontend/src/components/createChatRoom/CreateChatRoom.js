@@ -66,8 +66,6 @@ const CreateChatRoom = ({ open, onClose, createNewChatRoomFunction }) => {
     addGroup(chatRoomName, friendList);
 
     // maybe delete
-    const uniqueGroupID = "ABC";
-    createNewChatRoomFunction({ name: chatRoomName, Id: uniqueGroupID });
     onClose();
   };
 
