@@ -13,6 +13,7 @@ var usersRouter = require("./routes/users");
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server: server });
+
 const client = stompit.connect({ host: "localhost", port: 61613 });
 
 let subscription_message = null;
@@ -43,6 +44,7 @@ const subscribeToChatTopic = (topic, ws) => {
     { destination: `/topic/${topic}` },
     (err, msg) => {
       msg.readString("UTF-8", (err, body) => {
+        console.log(body);
         ws.send(body);
       });
     }
