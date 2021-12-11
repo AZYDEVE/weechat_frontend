@@ -17,12 +17,6 @@ const ChatRoom = ({ activeChatRoom, listOfMessages }) => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      clickSend();
-    }
-  };
-
   useEffect(() => {
     scrollToBottom();
   }, [listOfMessages]);
@@ -94,7 +88,6 @@ const ChatRoom = ({ activeChatRoom, listOfMessages }) => {
             className="messsage_inputbox"
             value={inputMessage}
             onChange={handleInputChanges}
-            onKeyDown={handleKeyDown}
           />
 
           <FiSend
