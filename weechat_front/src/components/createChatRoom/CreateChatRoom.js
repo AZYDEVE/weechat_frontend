@@ -37,7 +37,6 @@ const CreateChatRoom = ({ open, onClose, refreshChatRoom }) => {
 
   const handleChatRoomNameChange = (value) => {
     setChatroomName(value.target.value);
-    console.log(chatRoomName);
   };
 
   //  for creating chat room , return a unique chatroom id

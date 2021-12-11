@@ -13,9 +13,8 @@ const ChatRoomSideBar = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const getListOfChatRooms = (listOfchatRoom) => {
-    console.log(listOfChatRoom);
     if (listOfChatRoom.length !== 0) {
-      return listOfchatRoom.map((chatRoom) => (
+      return listOfchatRoom.map((chatRoom, key) => (
         <Chatcard
           stylings={{
             height: "60px",
@@ -27,6 +26,7 @@ const ChatRoomSideBar = ({
             boxShadow: "1px 1.5px 3px rgba(0,0,0.18)",
           }}
           chatRoom={chatRoom}
+          key={key}
           selectChatRoom={selectChatRoom}
           activeChatRoom={activeChatRoom}
         />

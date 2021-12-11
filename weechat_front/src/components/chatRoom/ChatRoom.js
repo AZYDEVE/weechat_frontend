@@ -5,13 +5,6 @@ import getUserInfo from "../../utils/userUtil";
 import { sendNewMesage } from "../../services/relationship_api";
 import "./chatRoom.css";
 
-// const ws = new WebSocket("ws://localhost:3001");
-
-// ws.onopen = function (event) {
-//   console.log("socket is connected");
-//   ws.send("test");
-// };
-
 const ChatRoom = ({ activeChatRoom, listOfMessages }) => {
   const userInfo = getUserInfo();
 
@@ -30,13 +23,9 @@ const ChatRoom = ({ activeChatRoom, listOfMessages }) => {
   // send new message the server
   const clickSend = () => {
     if (inputMessage === "") {
-      console.log("message is empty");
       return;
     }
 
-    console.log(userInfo);
-
-    console.log(activeChatRoom);
     const messageInfo = {
       groupId: activeChatRoom,
       senderId: userInfo.email,
@@ -55,10 +44,8 @@ const ChatRoom = ({ activeChatRoom, listOfMessages }) => {
   };
 
   const displayListOfMessages = () => {
-    console.log(listOfMessages.length);
-
     if (listOfMessages.length !== 0) {
-      return listOfMessages.map((message) => {
+      return listOfMessages.map((message, key) => {
         let isCurrentUser = false;
         if (message.UserID === userInfo.email) {
           isCurrentUser = true;
@@ -70,6 +57,7 @@ const ChatRoom = ({ activeChatRoom, listOfMessages }) => {
             message={message.message}
             time={message.timestamp}
             isCurrentUser={isCurrentUser}
+            key={key}
           />
         );
       });
@@ -85,7 +73,7 @@ const ChatRoom = ({ activeChatRoom, listOfMessages }) => {
           {displayListOfMessages()}
           <div ref={messagesEndRef} />
         </div>
-        <div clasName="messageInput">
+        <div className="messageInput">
           <textarea
             name="MessageInput"
             className="messsage_inputbox"

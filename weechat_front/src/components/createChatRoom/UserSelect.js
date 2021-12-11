@@ -7,7 +7,6 @@ import Select from "react-select";
 //   { label: "Java", value: "java" },
 // ];
 const UserSelect = ({ options, onChange }) => {
-  console.log(options);
   return (
     <div>
       <Select

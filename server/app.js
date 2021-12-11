@@ -14,7 +14,7 @@ const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server: server });
 
-const client = stompit.connect({ host: "localhost", port: 61613 });
+let client = stompit.connect({ host: "localhost", port: 61613 });
 
 let subscription_message = null;
 
@@ -28,6 +28,9 @@ wss.on("connection", function connection(ws) {
 
     if (messageObj.type === "newchat") {
       subscribeToGetNewChatRoom(Buffer.from(messageObj.body), ws);
+    } else if (messageObj.type === "change_mqport") {
+      //frontEnd Notifies change mq port
+      client = stompit.connect({ host: "localhost", port: message.body });
     } else {
       if (subscription_message !== null) {
         subscription_message.unsubscribe();

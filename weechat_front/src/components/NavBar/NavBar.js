@@ -4,7 +4,6 @@ import { Navbar, Container } from "react-bootstrap";
 import "./navbar.css";
 import useAuthInfo from "../../utils/userUtil";
 import getAllUsers from "../../utils/auth0API";
-import {listGroups, addGroup} from "../../services/relationship_api"
 
 const NavBar = () => {
   const { user, isAuthenticated, isLoading, loginWithRedirect, logout } =
@@ -33,7 +32,6 @@ const NavBar = () => {
           // an example of how to use userUtil to get current user_id
           console.log(userInfo.user_id);
 
-
           // an example of how to use getAllUsers to get a userList
           // note that getAllUsers() is an async function
           // you must use ".then" or other methods to cope with it
@@ -46,8 +44,7 @@ const NavBar = () => {
               );
             }
           });
-        }}
-      >
+        }}>
         Get All Users
       </button>
     );
@@ -64,7 +61,7 @@ const NavBar = () => {
     <Navbar className="navbar" bg="light" sticky="top">
       <Container className="navbarContainer">
         <Navbar.Brand className="brand">WeeChat</Navbar.Brand>
-        <div class="inline" className="userSection">
+        <div className="userSection">
           <Profile />
           <LogInOutButton />
           <GetInfoButton />
