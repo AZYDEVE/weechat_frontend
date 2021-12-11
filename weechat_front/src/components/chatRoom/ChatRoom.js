@@ -4,6 +4,7 @@ import MessageCard from "./MessageCard";
 import getUserInfo from "../../utils/userUtil";
 import { sendNewMesage } from "../../services/relationship_api";
 import "./chatRoom.css";
+import Swal from "sweetalert2";
 
 const ChatRoom = ({ activeChatRoom, listOfMessages }) => {
   const userInfo = getUserInfo();
@@ -16,12 +17,18 @@ const ChatRoom = ({ activeChatRoom, listOfMessages }) => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      clickSend();
+    }
+  };
+
   useEffect(() => {
     scrollToBottom();
   }, [listOfMessages]);
 
   // send new message the server
-  const clickSend = () => {
+  const clickSend = async () => {
     if (inputMessage === "") {
       return;
     }
@@ -31,8 +38,16 @@ const ChatRoom = ({ activeChatRoom, listOfMessages }) => {
       senderId: userInfo.email,
       message: inputMessage,
     };
-    sendNewMesage(messageInfo);
-    setInputMessage("");
+    const result = await sendNewMesage(messageInfo);
+    if (result.status === 200) {
+      setInputMessage("");
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "all servers are down",
+      });
+    }
   };
 
   const handleInputChanges = (event) => {
@@ -79,6 +94,7 @@ const ChatRoom = ({ activeChatRoom, listOfMessages }) => {
             className="messsage_inputbox"
             value={inputMessage}
             onChange={handleInputChanges}
+            onKeyDown={handleKeyDown}
           />
 
           <FiSend

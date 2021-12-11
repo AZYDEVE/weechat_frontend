@@ -24,13 +24,15 @@ wss.on("connection", function connection(ws) {
 
   // when receive new topic from the client, change the subscribe topic
   ws.on("message", function incoming(message) {
-    const messageObj = JSON.parse(message);
+    let messageObj = JSON.parse(message);
 
+    console.log(messageObj);
     if (messageObj.type === "newchat") {
       subscribeToGetNewChatRoom(Buffer.from(messageObj.body), ws);
     } else if (messageObj.type === "change_mqport") {
       //frontEnd Notifies change mq port
-      client = stompit.connect({ host: "localhost", port: message.body });
+
+      client = stompit.connect({ host: "localhost", port: messageObj.body });
     } else {
       if (subscription_message !== null) {
         subscription_message.unsubscribe();

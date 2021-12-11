@@ -5,6 +5,7 @@ import useAuthInfo from "../utils/userUtil";
 import OpenSocket from "../utils/webSocket";
 import { listGroups, getChatRoomHistory } from "../services/relationship_api";
 import "./chatPage.css";
+import Swal from "sweetalert2";
 
 const ChatPage = () => {
   const ws = OpenSocket();
@@ -24,8 +25,12 @@ const ChatPage = () => {
 
     try {
       const listOfChatRoom = await listGroups(userInfo.email);
-
-      setListOfChatRoom(listOfChatRoom.data.datas);
+      console.log(listOfChatRoom);
+      if (listOfChatRoom !== "all_servers_are_down") {
+        setListOfChatRoom(listOfChatRoom.data.datas);
+      } else {
+        warningMessages("Most of the servers are down");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -36,7 +41,11 @@ const ChatPage = () => {
       const listOfRoom = await listGroups(userInfo.email);
       console.log(listOfRoom);
 
-      setListOfChatRoom(listOfRoom.data.datas);
+      if (listOfRoom !== "all_servers_are_down") {
+        setListOfChatRoom(listOfRoom.data.datas);
+      } else {
+        warningMessages("Most of the servers are down");
+      }
     };
 
     if (userInfo.email !== "") {
@@ -47,6 +56,14 @@ const ChatPage = () => {
       }
     }
   }, [userInfo]);
+
+  const warningMessages = (message) => {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: message,
+    });
+  };
 
   const selectChatRoom = async (chatRoomID) => {
     setChatRoomID(chatRoomID);
