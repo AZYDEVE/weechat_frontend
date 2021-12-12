@@ -1,6 +1,6 @@
 # Frontend - Client application
 
-## To run the application, you need Node.js installed in you computer
+## To run the application, you need Node.js installed in your computer
 
 https://nodejs.org/en/
 
