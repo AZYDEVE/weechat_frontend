@@ -6,4 +6,4 @@ export const server_urls = [
   "http://localhost:30005",
 ];
 
-export const mq_ports = [5001, 5002, 5003, 5004, 5005];
+export const mq_ports = [61613, 61620, 61621, 61622, 61623];
