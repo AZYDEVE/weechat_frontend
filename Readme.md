@@ -12,8 +12,8 @@ In the server folder, type in terminal： <br />
 
 To set set the port you want to run the server on:
 
-<pre> for windows os type: "set PORT=&ltport number&gt
- for Linux or mac :  "PORT=&ltport number&gt </pre>
+<pre> for windows os type: set PORT=&ltport number&gt
+ for Linux or mac :  PORT=&ltport number&gt </pre>
 
 Then start the server, type:
 
