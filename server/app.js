@@ -14,7 +14,7 @@ const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server: server });
 
-let client = stompit.connect({ host: "localhost", port: 61613 });
+let client = stompit.connect({ host: "localhost", port: 5001 });
 
 let subscription_message = null;
 
