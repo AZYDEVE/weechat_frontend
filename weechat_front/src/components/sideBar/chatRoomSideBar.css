@@ -1,0 +1,11 @@
+.ChatRoomSideBar {
+  background-color: #ebe9e9;
+  display: flex;
+  width: 40vh;
+  height: 90vh;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+  padding-top: 30px;
+  overflow-y: scroll;
+}

@@ -1,0 +1,52 @@
+.overlay-container {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  z-index: 10;
+}
+
+.create-chat-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(0, 0, 0, 1);
+  opacity: 0.9;
+  padding: 50%;
+  z-index: 10;
+}
+
+.chatRoomName {
+  width: 80vh;
+  height: 5vh;
+  font-size: 4vh;
+  resize: none;
+}
+
+.chatRoomName::-webkit-input-placeholder {
+  display: flex;
+  font-size: 2vh;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.btn-close {
+  border: 1px;
+  border-radius: 8px;
+  width: 10vh;
+  margin-right: 1vh;
+}
+
+.btn-create {
+  border: 1px;
+  border-radius: 8px;
+  width: 10vh;
+}
+.selection {
+  margin-top: 20px;
+}

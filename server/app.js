@@ -13,7 +13,8 @@ var usersRouter = require("./routes/users");
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server: server });
-const client = stompit.connect({ host: "localhost", port: 61613 });
+
+let client = stompit.connect({ host: "localhost", port: 61613 });
 
 let subscription_message = null;
 
@@ -23,10 +24,15 @@ wss.on("connection", function connection(ws) {
 
   // when receive new topic from the client, change the subscribe topic
   ws.on("message", function incoming(message) {
-    const messageObj = JSON.parse(message);
+    let messageObj = JSON.parse(message);
 
+    console.log(messageObj);
     if (messageObj.type === "newchat") {
       subscribeToGetNewChatRoom(Buffer.from(messageObj.body), ws);
+    } else if (messageObj.type === "change_mqport") {
+      //frontEnd Notifies change mq port
+
+      client = stompit.connect({ host: "localhost", port: messageObj.body });
     } else {
       if (subscription_message !== null) {
         subscription_message.unsubscribe();
@@ -43,6 +49,7 @@ const subscribeToChatTopic = (topic, ws) => {
     { destination: `/topic/${topic}` },
     (err, msg) => {
       msg.readString("UTF-8", (err, body) => {
+        console.log(body);
         ws.send(body);
       });
     }

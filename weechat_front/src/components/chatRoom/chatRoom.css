@@ -1,0 +1,41 @@
+.chatRoom {
+  display: flex;
+  flex-direction: column;
+  width: 120vh;
+  height: 100%;
+}
+
+.messageDisplay {
+  display: flex;
+  flex-direction: column;
+  width: 120vh;
+  height: 78vh;
+  border: 10px black;
+  overflow: scroll;
+  background-color: #c5ebc9;
+}
+
+.messageInput {
+  display: flex;
+  flex-direction: row;
+  width: 120vh;
+  height: 12vh;
+}
+
+.messsage_inputbox {
+  margin-top: 10px;
+  margin-left: 10px;
+  resize: none;
+  width: 110vh;
+  height: 100%;
+  font-size: 4vh;
+}
+
+.btn-send {
+  margin-top: 5vh;
+  margin-left: 2vh;
+  margin-bottom: 4vh;
+  width: 5vh;
+  height: 5vh;
+  cursor: pointer;
+}
